@@ -1,0 +1,36 @@
+---
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+
+  - name: Enable firewalld
+    service:
+      name: firewalld
+      enabled: Yes
+      state: restarted
+
+  - name: Add ports to firewalld
+    firewalld:
+      port: "{{ item }}"
+      zone: public
+      permanent: Yes
+      state: enabled
+    with_items:
+      - 80/tcp
+      - 5672/tcp
+      - 15672/tcp
+      - 6379/tcp
+
+  - name: reload service firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
+
+  - name: Add the user taiga
+    user:
+      name: taiga
+      create_home: Yes
+      group: wheel
+      password: '12345'
+
+...

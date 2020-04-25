@@ -1,0 +1,27 @@
+[web]
+web1 ansible_port=2222 ansible_private_key_file=.vagrant/machines/web1/virtualbox/private_key
+web2 ansible_port=2200 ansible_private_key_file=.vagrant/machines/web2/virtualbox/private_key
+web3 ansible_port=2201 ansible_private_key_file=.vagrant/machines/web3/virtualbox/private_key
+
+[db]
+pg1 ansible_port=2202 ansible_private_key_file=.vagrant/machines/pg1/virtualbox/private_key 
+pg2 ansible_port=2203 ansible_private_key_file=.vagrant/machines/pg2/virtualbox/private_key
+pg3 ansible_port=2204 ansible_private_key_file=.vagrant/machines/pg3/virtualbox/private_key
+
+[dcs]
+consul ansible_port=2205 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
+
+[proxy]
+haproxy1 ansible_port=2206 ansible_private_key_file=.vagrant/machines/haproxy1/virtualbox/private_key
+haproxy2 ansible_port=2207 ansible_private_key_file=.vagrant/machines/haproxy2/virtualbox/private_key
+haproxy3 ansible_port=2208 ansible_private_key_file=.vagrant/machines/haproxy3/virtualbox/private_key
+
+[rabbitmq]
+rabbitmq1 ansible_port=2206 ansible_private_key_file=.vagrant/machines/rabbitmq1/virtualbox/private_key
+rabbitmq2 ansible_port=2206 ansible_private_key_file=.vagrant/machines/rabbitmq2/virtualbox/private_key
+rabbitmq3 ansible_port=2206 ansible_private_key_file=.vagrant/machines/rabbitmq3/virtualbox/private_key
+
+[all:vars]
+ansible_host=127.0.0.1
+ansible_user=vagrant
+

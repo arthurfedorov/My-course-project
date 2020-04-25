@@ -1,0 +1,22 @@
+---
+  - name: Upgrade all packages
+    dnf:
+      name: "*"
+      state: latest
+  
+  - name: install the 'Development tools' package group
+    dnf:
+      name: '@Development tools'
+      state: present
+  
+  - name: Install epel-release
+    package:
+      name: epel-release
+      state: present
+    
+  - name: Install required packages
+    package:
+      name: "{{ taiga_packages }}"
+      state: present
+
+...

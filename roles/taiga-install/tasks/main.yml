@@ -1,0 +1,16 @@
+---
+  # - name: OS preparation
+  #   become_user: root
+  #   become: True  
+  #   include: os-configuration.yml
+
+  # - name: Install required packages
+  #   become_user: root
+  #   become: True
+  #   include: install-software.yml
+
+  - name: Install required packages
+    become_user: taiga
+    become: True
+    include: install-taiga.yml
+...

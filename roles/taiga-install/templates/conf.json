@@ -1,0 +1,13 @@
+{
+        "api": "http://192.168.11.100/api/v1/",
+        "eventsUrl": "ws://192.168.11.100/events",
+        "debug": "true",
+        "publicRegisterEnabled": true,
+        "feedbackEnabled": true,
+        "privacyPolicyUrl": null,
+        "termsOfServiceUrl": null,
+        "GDPRUrl": null,
+        "maxUploadFileSize": null,
+        "contribPlugins": [],
+        "gravatar": false
+}

@@ -1,0 +1,7 @@
+---
+  - name: Install Taiga
+    hosts: web
+
+    roles: 
+      - taiga-install
+...

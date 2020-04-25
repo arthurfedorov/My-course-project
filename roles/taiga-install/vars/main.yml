@@ -1,0 +1,15 @@
+---
+taiga_packages:
+  - nginx
+  - libjpeg-devel
+  - zlib-devel 
+  - git 
+  - gdbm-devel 
+  - python3 
+  - python3-pip
+  - virtualenv
+  - python3-devel 
+  - libxml2-devel 
+  - libxslt-devel 
+  - openssl-devel 
+  - libffi-devel
