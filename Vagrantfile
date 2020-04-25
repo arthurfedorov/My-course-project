@@ -82,9 +82,17 @@ Vagrant.configure("2") do |config|
           box.vm.provider :virtualbox do |vb|
           
           case boxname.to_s
-          when "web"
+          when "web1"
             vb.customize ["modifyvm", :id, "--memory", "1024"]
-          when "pg"
+          when "web2"
+            vb.customize ["modifyvm", :id, "--memory", "1024"]
+          when "web3"
+            vb.customize ["modifyvm", :id, "--memory", "1024"]
+          when "pg1"
+            vb.customize ["modifyvm", :id, "--memory", "512"]
+          when "pg2"
+            vb.customize ["modifyvm", :id, "--memory", "512"]
+          when "pg3"
             vb.customize ["modifyvm", :id, "--memory", "512"]
           end
 
