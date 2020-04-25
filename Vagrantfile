@@ -2,22 +2,70 @@
 # vim: set ft=ruby :
 
 MACHINES = {
-  :web => {
+  :web1 => {
         :box_name => "centos/8",
         :ip_addr => '192.168.10.100'
   },
-  :pg => {
+
+  :web2 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.101'
+  },
+
+  :web3 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.102'
+  },
+
+  :pg1 => {
         :box_name => "centos/8",
         :ip_addr => '192.168.10.110'
   },
-  :redis => {
+   
+  :pg2 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.111'
+  },
+
+  :pg3 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.112'
+  },
+
+  :haproxy1 => {
         :box_name => "centos/8",
         :ip_addr => '192.168.10.120'
   },
-  :rabbitmq => {
+
+  :haproxy2 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.121'
+  },
+
+  :haproxy3 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.122'
+  },
+
+  :rabbitmq1 => {
         :box_name => "centos/8",
         :ip_addr => '192.168.10.130'
-  }
+  },
+
+  :rabbitmq2 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.131'
+  },
+
+  :rabbitmq3 => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.132'
+  },
+
+  :redis => {
+        :box_name => "centos/8",
+        :ip_addr => '192.168.10.140'
+  },
 }
 
 Vagrant.configure("2") do |config|

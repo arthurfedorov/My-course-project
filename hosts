@@ -17,9 +17,9 @@ haproxy2 ansible_port=2207 ansible_private_key_file=.vagrant/machines/haproxy2/v
 haproxy3 ansible_port=2208 ansible_private_key_file=.vagrant/machines/haproxy3/virtualbox/private_key
 
 [rabbitmq]
-rabbitmq1 ansible_port=2206 ansible_private_key_file=.vagrant/machines/rabbitmq1/virtualbox/private_key
-rabbitmq2 ansible_port=2206 ansible_private_key_file=.vagrant/machines/rabbitmq2/virtualbox/private_key
-rabbitmq3 ansible_port=2206 ansible_private_key_file=.vagrant/machines/rabbitmq3/virtualbox/private_key
+rabbitmq1 ansible_port=2209 ansible_private_key_file=.vagrant/machines/rabbitmq1/virtualbox/private_key
+rabbitmq2 ansible_port=2210 ansible_private_key_file=.vagrant/machines/rabbitmq2/virtualbox/private_key
+rabbitmq3 ansible_port=2211 ansible_private_key_file=.vagrant/machines/rabbitmq3/virtualbox/private_key
 
 [all:vars]
 ansible_host=127.0.0.1
