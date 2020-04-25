@@ -2,13 +2,13 @@
   "datacenter": "patroni",
   "node_name": "consul",
   "addresses" : {
-    "http": "{{ ansible_eth1.ipv4.address }}"
+    "http": "192.168.10.150"
   },
-  "bind_addr": "{{ ansible_eth1.ipv4.address }}",
-  "node_name": "{{ ansible_eth1.ipv4.address }}",
+  "bind_addr": "192.168.10.150",
+  "node_name": "192.168.10.150",
   "rejoin_after_leave": true,
   "domain": "consul",
-  "retry_join": ["{{ ansible_eth1.ipv4.address }}"],
+  "retry_join": [ "192.168.1.10"],
   "bootstrap_expect": 1,
   "server": true,
   "verify_incoming": false,
