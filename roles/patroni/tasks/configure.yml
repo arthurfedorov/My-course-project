@@ -19,6 +19,8 @@
     template:
       src: patroni.yml.j2
       dest: /etc/patroni/patroni.yml
+      owner: postgres
+      group: postgres
 
   - name: Patroni | configure | Start patroni cluster
     systemd:
