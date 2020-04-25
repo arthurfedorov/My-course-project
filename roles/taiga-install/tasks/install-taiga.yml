@@ -1,15 +1,15 @@
 ---
-  # - name: Clone git taiga backend repo
-  #   git:
-  #     repo: https://github.com/taigaio/taiga-back.git
-  #     dest: ~/taiga-back
-  #     clone: Yes
+  - name: Clone git taiga backend repo
+    git:
+      repo: https://github.com/taigaio/taiga-back.git
+      dest: ~/taiga-back
+      clone: Yes
 
-  # - name: Install pip requirements
-  #   pip:
-  #     requirements: ~/taiga-back/requirements.txt
-  #     virtualenv: ~/taiga
-  #     virtualenv_command: virtualenv-3.6
+  - name: Install pip requirements
+    pip:
+      requirements: ~/taiga-back/requirements.txt
+      virtualenv: ~/taiga
+      virtualenv_command: virtualenv-3.6
     
   - name: Copy taiga local.py config file
     template:
