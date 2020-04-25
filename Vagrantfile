@@ -65,7 +65,7 @@ MACHINES = {
   :consul => {
         :box_name => "centos/8",
         :ip_addr => '192.168.10.150'
-  }
+  },
 
   :redis => {
         :box_name => "centos/8",
