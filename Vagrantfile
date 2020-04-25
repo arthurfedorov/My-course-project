@@ -89,17 +89,23 @@ Vagrant.configure("2") do |config|
           
           case boxname.to_s
           when "web1"
-            vb.customize ["modifyvm", :id, "--memory", "1024"]
+            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
           when "web2"
-            vb.customize ["modifyvm", :id, "--memory", "1024"]
+            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]]
           when "web3"
-            vb.customize ["modifyvm", :id, "--memory", "1024"]
+            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]]
           when "pg1"
-            vb.customize ["modifyvm", :id, "--memory", "512"]
+            vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
           when "pg2"
-            vb.customize ["modifyvm", :id, "--memory", "512"]
+            vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
           when "pg3"
-            vb.customize ["modifyvm", :id, "--memory", "512"]
+            vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
+          when "haproxy1"
+            vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+          when "haproxy2"
+            vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+         when "haproxy3"
+            vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
           end
 
           end

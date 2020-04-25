@@ -19,10 +19,10 @@ rabbitmq2 ansible_port=2209 ansible_private_key_file=.vagrant/machines/rabbitmq2
 rabbitmq3 ansible_port=2210 ansible_private_key_file=.vagrant/machines/rabbitmq3/virtualbox/private_key
 
 [dcs]
-consul ansible_port=2212 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
+consul ansible_port=2211 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
 
-[redis]
-redis ansible_port=2211 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
+[cache]
+redis ansible_port=2212 ansible_private_key_file=.vagrant/machines/redis/virtualbox/private_key
 
 [all:vars]
 ansible_host=127.0.0.1
