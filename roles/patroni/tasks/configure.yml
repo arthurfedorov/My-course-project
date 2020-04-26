@@ -28,4 +28,26 @@
       state: restarted
       daemon_reload: True
       enabled: true
+
+  - name: Add database user taiga
+    postgresql_user:
+      login_host: 192.168.10.110
+      port: 5432
+      login_user: postgres
+      login_password: gfhjkm
+      name: taiga
+      password: taiga
+      state: present
+    when: inventory_hostname == 'pg1'
+    
+  - name: Add database taiga with owner taiga
+    postgresql_db:
+      login_host: 192.168.10.110
+      port: 5432
+      login_user: postgres
+      login_password: gfhjkm
+      name: taiga
+      owner: taiga
+      state: present
+    when: inventory_hostname == 'pg1'
 ...
