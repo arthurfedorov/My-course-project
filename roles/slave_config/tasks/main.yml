@@ -1,7 +1,0 @@
----
-  - name: Copy postgresql.conf config
-    include: copyconfigs.yml
-  
-  - name: Basebackup data from master
-    include: pg_basebackup.yml
-...

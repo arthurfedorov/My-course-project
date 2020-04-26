@@ -91,9 +91,9 @@ Vagrant.configure("2") do |config|
           when "web1"
             vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
           when "web2"
-            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]]
+            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
           when "web3"
-            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]]
+            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
           when "pg1"
             vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
           when "pg2"

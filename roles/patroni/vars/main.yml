@@ -1,5 +1,5 @@
 ---
-  patroni_scope_name: My_cluster
+  patroni_scope_name: My_patroni
 
   install_packages:
     - gcc 
@@ -11,10 +11,4 @@
   pip_packages:
   - setuptools
   - patroni[consul]
-
-  postgresql_packages:
-    - postgresql11-server
-    - postgresql11-devel
-    - postgresql11-contrib
-    - postgresql11
 ...

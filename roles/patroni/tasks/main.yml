@@ -1,7 +1,4 @@
 ---
-  - name: Patroni | main | Install PostgreSQL
-    include: pg_install.yml
- 
   - name: Patroni | main | Include install tasks
     include: install.yml
 

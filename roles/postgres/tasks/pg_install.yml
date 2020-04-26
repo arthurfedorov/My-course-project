@@ -1,13 +1,13 @@
 ---
-  - name: Patroni | pg_install | Install PostgreSQL Repository
+  - name: Install PostgreSQL Repository
     dnf:
       name:  https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
       state: present
 
-  - name: Patroni | pg_install | Disable the built-in PostgreSQL module
+  - name: Disable the built-in PostgreSQL module
     command: dnf -qy module disable postgresql
 
-  - name: Patroni | pg_install | Install PostgreSQL packages
+  - name: Install PostgreSQL packages
     package:
       name: "{{ postgresql_packages }}"
       state: present
