@@ -1,22 +1,91 @@
 ---
-  - name: Clone git taiga backend repo
+  - name: Taiga install | install-taiga | Clone git taiga backend repo
     git:
       repo: https://github.com/taigaio/taiga-back.git
       dest: ~/taiga-back
       clone: Yes
 
-  - name: Install pip requirements
+  - name: Taiga install | install-taiga | Install pip requirements
     pip:
       requirements: ~/taiga-back/requirements.txt
       virtualenv: ~/taiga
       virtualenv_command: virtualenv-3.6
     
-  - name: Copy taiga local.py config file
+  - name: Taiga install | install-taiga | Copy taiga local.py config file
     template:
       src: local.py.j2
       dest: ~/taiga-back/settings/local.py
       owner: taiga
       group: wheel
       mode: '0644'
-    
+
+  - name: Taiga install | install-taiga | Run database migration
+    django_manage:
+      command: migrate
+      app_path: ~/taiga-back
+      virtualenv: ~/taiga
+
+  - name: Taiga install | install-taiga | Run loaddata initial_user
+    django_manage:
+      command: loaddata
+      fixtures: initial_user
+      app_path: ~/taiga-back
+      virtualenv: ~/taiga 
+
+  - name: Taiga install | install-taiga | Run loaddata initial_project_templates
+    django_manage:
+      command: loaddata
+      fixtures: initial_project_templates
+      app_path: ~/taiga-back
+      virtualenv: ~/taiga  
+
+  - name: Taiga install | install-taiga | Run compilemessages
+    django_manage:
+      command: compilemessages
+      app_path: ~/taiga-back
+      virtualenv: ~/taiga
+
+  - name: Taiga install | install-taiga | Run collectstatic
+    django_manage:
+      command: collectstatic
+      app_path: ~/taiga-back
+      virtualenv: ~/taiga
+
+  - name: Taiga install | install-taiga | Sample data for testing
+    django_manage:
+      command: sample_data
+      app_path: ~/taiga-back
+      virtualenv: ~/taiga
+
+  - name: Taiga install | install-taiga | Clone git taiga frontend repo
+    git:
+      repo: https://github.com/taigaio/taiga-front-dist.git 
+      dest: ~/taiga-front-dist
+      clone: Yes
+
+  - name: Taiga install | install-taiga | Copy taiga frontend config.json config file
+    template:
+      src: conf.json.j2
+      dest: ~/taiga-front-dist/dist/conf.json
+      owner: taiga
+      group: wheel
+      mode: '0644'
+
+  - name: Taiga install | install-taiga | Clone git taiga frontend repo
+    git:
+      repo: https://github.com/taigaio/taiga-events.git
+      dest: ~/taiga-events 
+      clone: Yes
+  
+  - name: Taiga install | install-taiga | Install the javascript dependencies needed
+    npm:
+      path: ~/taiga-events
+
+  - name: Taiga install | install-taiga | Copy taiga frontend config.json config file
+    template:
+      src: config.json.j2
+      dest: ~/taiga-events/config.json
+      owner: taiga
+      group: wheel
+      mode: '0644'
 ...

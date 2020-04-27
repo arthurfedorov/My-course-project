@@ -9,8 +9,14 @@
     become: True
     include: install-software.yml
 
-  - name: Install required packages
+  - name: Install Taiga
     become_user: taiga
     become: True
     include: install-taiga.yml
+
+  - name: Nginx configuration
+    become_user: root
+    become: True
+    include: nginx.yml
+
 ...

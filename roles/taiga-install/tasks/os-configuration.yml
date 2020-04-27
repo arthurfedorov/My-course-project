@@ -1,15 +1,15 @@
 ---
-  - name: Disable SELinux
+  - name: Taiga install | os-configuration | Disable SELinux
     selinux:
       state: disabled
 
-  - name: Enable firewalld
+  - name: Taiga install | os-configuration | Enable firewalld
     service:
       name: firewalld
       enabled: Yes
       state: restarted
 
-  - name: Add ports to firewalld
+  - name: Taiga install | os-configuration | Add ports to firewalld
     firewalld:
       port: "{{ item }}"
       zone: public
@@ -21,16 +21,31 @@
       - 15672/tcp
       - 6379/tcp
 
-  - name: reload service firewalld
+  - name: Taiga install | os-configuration | Reload service firewalld
     systemd:
       name: firewalld
       state: reloaded
 
-  - name: Add the user taiga
+  - name: Taiga install | os-configuration | Add the user taiga
     user:
       name: taiga
       create_home: Yes
       group: wheel
       password: '12345'
 
+  - name: Taiga install | install-taiga | Copy taiga_events systemd service
+    template:
+      src: taiga_events.service.j2
+      dest: /etc/systemd/system/taiga_events.service
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Taiga install | install-taiga | Copy taiga systemd service
+    template:
+      src: taiga.service.j2
+      dest: /etc/systemd/system/taiga.service
+      owner: root
+      group: root
+      mode: '0644'
 ...

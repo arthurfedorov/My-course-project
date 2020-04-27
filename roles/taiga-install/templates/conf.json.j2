@@ -1,6 +1,6 @@
 {
-        "api": "http://192.168.11.100/api/v1/",
-        "eventsUrl": "ws://192.168.11.100/events",
+        "api": "{{ ansible_eth1.ipv4.address }}/api/v1/",
+        "eventsUrl": "{{ ansible_eth1.ipv4.address }}/events",
         "debug": "true",
         "publicRegisterEnabled": true,
         "feedbackEnabled": true,
