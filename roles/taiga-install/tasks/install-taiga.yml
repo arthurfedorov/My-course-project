@@ -28,8 +28,8 @@
       name: taiga
       password: taiga
       state: present
+    when: inventory_hostname == 'web1
 
-    
   - name: Taiga install | install-taiga | Add database taiga with owner taiga
     postgresql_db:
       login_host: 192.168.10.120
@@ -39,32 +39,37 @@
       name: taiga
       owner: taiga
       state: present
+    when: inventory_hostname == 'web1'
 
   - name: Taiga install | install-taiga | Run database migration
     django_manage:
       command: migrate
       app_path: ~/taiga-back
       virtualenv: ~/taiga
+    when: inventory_hostname == 'web1
 
   - name: Taiga install | install-taiga | Run loaddata initial_user
     django_manage:
       command: loaddata
       fixtures: initial_user
       app_path: ~/taiga-back
-      virtualenv: ~/taiga 
+      virtualenv: ~/taiga
+    when: inventory_hostname == 'web1 
 
   - name: Taiga install | install-taiga | Run loaddata initial_project_templates
     django_manage:
       command: loaddata
       fixtures: initial_project_templates
       app_path: ~/taiga-back
-      virtualenv: ~/taiga  
+      virtualenv: ~/taiga
+    when: inventory_hostname == 'web1  
 
   - name: Taiga install | install-taiga | Run compilemessages
     django_manage:
       command: compilemessages
       app_path: ~/taiga-back
       virtualenv: ~/taiga
+    when: inventory_hostname == 'web1
 
   - name: Taiga install | install-taiga | Run collectstatic
     django_manage:
@@ -77,6 +82,7 @@
       command: sample_data
       app_path: ~/taiga-back
       virtualenv: ~/taiga
+    when: inventory_hostname == 'web1
 
   - name: Taiga install | install-taiga | Clone git taiga frontend repo
     git:
