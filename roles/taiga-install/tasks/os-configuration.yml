@@ -34,7 +34,9 @@
     user:
       name: taiga
       create_home: Yes
-      group: wheel, taiga
+      groups: 
+        - wheel
+        - taiga
       password: '$6$.kl4gwnKzvHP5yqk$Cx0GYbcUS8NpdMgYRFXR2Lpz5kqFpVzOPeyewd9kudMl/IMag0qoqxhU.eCWujjeVDflNL3U8xJ91VsSexBol/'
 
   - name: Taiga install | install-taiga | Copy taiga_events systemd service

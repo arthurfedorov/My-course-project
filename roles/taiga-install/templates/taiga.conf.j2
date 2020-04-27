@@ -1,6 +1,6 @@
 server {
     listen *:80 default_server;
-    server_name 192.168.11.100;
+    server_name {{ ansible_eth1.ipv4.address }};
 
     large_client_header_buffers 4 32k;
     client_max_body_size 50M;
