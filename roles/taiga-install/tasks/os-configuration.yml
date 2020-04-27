@@ -26,12 +26,16 @@
       name: firewalld
       state: reloaded
 
+  - name: Taiga install | os-configuration | Add group taiga
+    group:
+      name: taiga
+
   - name: Taiga install | os-configuration | Add the user taiga
     user:
       name: taiga
       create_home: Yes
-      group: wheel
-      password: '12345'
+      group: wheel, taiga
+      password: '$6$.kl4gwnKzvHP5yqk$Cx0GYbcUS8NpdMgYRFXR2Lpz5kqFpVzOPeyewd9kudMl/IMag0qoqxhU.eCWujjeVDflNL3U8xJ91VsSexBol/'
 
   - name: Taiga install | install-taiga | Copy taiga_events systemd service
     template:
