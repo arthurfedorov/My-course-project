@@ -30,8 +30,8 @@
       enabled: true
 
   - name: Patroni | configure | Waiting for cluster bootstrap
-    wait_for:
-      delay: 10
+    pause:
+      seconds: "15"
 
   - name: Add database user taiga
     postgresql_user:

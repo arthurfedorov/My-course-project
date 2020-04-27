@@ -1,4 +1,8 @@
 ---
+  - name: Taiga install | os-configuration | Disable SELinux
+    selinux:
+      state: disabled
+      
   - name: Install HAproxy
     package:
       name: haproxy
