@@ -1,29 +1,29 @@
 ---
-  # - name: Taiga install | install-software | Upgrade all packages
-  #   dnf:
-  #     name: "*"
-  #     state: latest
+  - name: Taiga install | install-software | Upgrade all packages
+    dnf:
+      name: "*"
+      state: latest
   
-  # - name: Taiga install | install-software | Install the 'Development tools' package group
-  #   dnf:
-  #     name: '@Development tools'
-  #     state: present
+  - name: Taiga install | install-software | Install the 'Development tools' package group
+    dnf:
+      name: '@Development tools'
+      state: present
   
-  # - name: Taiga install | install-software | Install epel-release
-  #   package:
-  #     name: epel-release
-  #     state: present
+  - name: Taiga install | install-software | Install epel-release
+    package:
+      name: epel-release
+      state: present
     
-  # - name: Taiga install | install-software | Install required packages
-  #   package:
-  #     name: "{{ taiga_packages }}"
-  #     state: present
+  - name: Taiga install | install-software | Install required packages
+    package:
+      name: "{{ taiga_packages }}"
+      state: present
 
-  # - name: Taiga install | install-software | Install Node.js Yum Repository
-  #   shell: curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+  - name: Taiga install | install-software | Install Node.js Yum Repository
+    shell: curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
 
-  # - name: Taiga install | install-software | Install Node.js
-  #   package:
-  #     name: nodejs
-  #     state: present
+  - name: Taiga install | install-software | Install Node.js
+    package:
+      name: nodejs
+      state: present
 ...
