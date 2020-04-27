@@ -4,12 +4,12 @@ web2 ansible_port=2200 ansible_private_key_file=.vagrant/machines/web2/virtualbo
 web3 ansible_port=2201 ansible_private_key_file=.vagrant/machines/web3/virtualbox/private_key
 
 [db]
-pg1 ansible_port=2200 ansible_private_key_file=.vagrant/machines/pg1/virtualbox/private_key 
-pg2 ansible_port=2201 ansible_private_key_file=.vagrant/machines/pg2/virtualbox/private_key
-pg3 ansible_port=2202 ansible_private_key_file=.vagrant/machines/pg3/virtualbox/private_key
+pg1 ansible_port=2202 ansible_private_key_file=.vagrant/machines/pg1/virtualbox/private_key 
+pg2 ansible_port=2203 ansible_private_key_file=.vagrant/machines/pg2/virtualbox/private_key
+pg3 ansible_port=2204 ansible_private_key_file=.vagrant/machines/pg3/virtualbox/private_key
 
 [proxy]
-haproxy1 ansible_port=2203 ansible_private_key_file=.vagrant/machines/haproxy1/virtualbox/private_key
+haproxy1 ansible_port=2205 ansible_private_key_file=.vagrant/machines/haproxy1/virtualbox/private_key
 haproxy2 ansible_port=2206 ansible_private_key_file=.vagrant/machines/haproxy2/virtualbox/private_key
 haproxy3 ansible_port=2207 ansible_private_key_file=.vagrant/machines/haproxy3/virtualbox/private_key
 
@@ -19,7 +19,7 @@ rabbitmq2 ansible_port=2209 ansible_private_key_file=.vagrant/machines/rabbitmq2
 rabbitmq3 ansible_port=2210 ansible_private_key_file=.vagrant/machines/rabbitmq3/virtualbox/private_key
 
 [dcs]
-consul ansible_port=2204 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
+consul ansible_port=2211 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
 
 [cache]
 redis ansible_port=2212 ansible_private_key_file=.vagrant/machines/redis/virtualbox/private_key
