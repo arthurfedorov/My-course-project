@@ -14,23 +14,5 @@
       owner: root
       group: root
       mode: '0644'
-  
-  - name: Taiga install | install-taiga | Restart nginx
-    service:
-      name: nginx
-      state: restarted
-      enabled: Yes
-
-  - name: Taiga install | install-taiga | Start taiga.service
-    service:
-      name: taiga
-      state: restarted
-      enabled: Yes
-    
-  - name: Taiga install | install-taiga | Start taiga_events.service
-    service:
-      name: taiga_events
-      state: restarted
-      enabled: Yes
 
 ...
