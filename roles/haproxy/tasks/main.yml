@@ -22,8 +22,32 @@
       state: present
     when: 
       - inventory_hostname == 'haproxy2'
+    
+  - name: Install Keepalived
+    package:
+      name: keepalived
+      state: present
+    when: 
       - inventory_hostname == 'haproxy3'
 
+  - name: Copy keepalived configs to master balancer
+    template:
+      src: master_keepalived.conf.j2
+      dest: /etc/keepalived/keepalived.conf
+      force: Yes
+    notify: enable_keepalived
+    when: 
+      - inventory_hostname == 'haproxy2'
+
+  - name: Copy keepalived configs to slave balancer
+    template:
+      src: slave_keepalived.conf.j2
+      dest: /etc/keepalived/keepalived.conf
+      force: Yes
+    notify: enable_keepalived
+    when: 
+      - inventory_hostname == 'haproxy3'
+    
   - name: Copy haproxy configs for load balancing
     template:
       src: haproxy.cfg.j2
@@ -32,6 +56,14 @@
     notify: enable_haproxy
     when: 
       - inventory_hostname == 'haproxy2'
+
+  - name: Copy haproxy configs for load balancing
+    template:
+      src: haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+      force: Yes
+    notify: enable_haproxy
+    when: 
       - inventory_hostname == 'haproxy3'
 ...
 

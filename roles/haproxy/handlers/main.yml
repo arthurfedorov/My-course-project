@@ -4,4 +4,10 @@
       name: haproxy
       state: restarted
       enabled: Yes
+
+  - name: enable_keepalived
+    service:
+      name: keepalived
+      state: restarted
+      enabled: Yes
 ...

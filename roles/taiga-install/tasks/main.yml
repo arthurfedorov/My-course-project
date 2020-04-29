@@ -18,4 +18,9 @@
     become_user: root
     become: True
     include: nginx.yml
+
+  - name: Start services
+    become_user: root
+    become: True
+    include: services.yml
 ...
