@@ -1,6 +1,6 @@
 ---
   - name: HAproxy install and configure role
-    hosts: haproxy1
+    hosts: proxy
     gather_facts: True
     become_user: root
     become: True

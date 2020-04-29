@@ -8,11 +8,30 @@
       name: haproxy
       state: present
 
-  - name: Copy haproxy.cfg
+  - name: Copy haproxy.cfg for Patronig for balancing patroni
     copy:
       src: haproxy.cfg
       dest: /etc/haproxy/haproxy.cfg
       force: Yes
     notify: enable_haproxy
+    when: inventory_hostname == 'haproxy1'
+  
+  - name: Install Keepalived
+    package:
+      name: keepalived
+      state: present
+    when: 
+      - inventory_hostname == 'haproxy2'
+      - inventory_hostname == 'haproxy3'
+
+  - name: Copy haproxy configs for load balancing
+    template:
+      src: haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+      force: Yes
+    notify: enable_haproxy
+    when: 
+      - inventory_hostname == 'haproxy2'
+      - inventory_hostname == 'haproxy3'
 ...
 
