@@ -3,22 +3,25 @@
     selinux:
       state: disabled
 
+  - name: Monitoring | prometheus | Create prometheus group  
+    group:
+      name: prometheus
+      system: Yes
+
   - name: Monitoring | prometheus | Add prometheus user
     user: 
       name: prometheus
-      shell: /bin/false
+      shell: /sbin/nologin
+      group: prometheus
+      system: Yes
       create_home: No
-
-  - name: Monitoring | prometheus | Ensure group "prometheus" exists
-    group:
-      name: prometheus
 
   - name: Monitoring | prometheus | Download prometheus
     get_url:
       url: https://github.com/prometheus/prometheus/releases/download/v2.17.2/prometheus-2.17.2.linux-amd64.tar.gz
       dest: /tmp/prometheus-2.17.2.linux-amd64.tar.gz
 
-  - name: Monitoring | prometheus | Extract node_exporter
+  - name: Monitoring | prometheus | Extract prometheus
     unarchive:
       src: /tmp/prometheus-2.17.2.linux-amd64.tar.gz
       dest: /tmp/
@@ -46,6 +49,7 @@
       state: directory
       owner: prometheus
       group: prometheus
+      mode: '775'
     
   - name: Monitoring | prometheus | Copy prometheus configs to new folder
     template:
@@ -61,14 +65,20 @@
       owner: prometheus
       group: prometheus
 
+  - name: Monitoring | prometheus | Copy console and console_libraries
+    command: cp -r /tmp/prometheus-2.17.2.linux-amd64/{{ item }} /etc/prometheus/
+    with_items:
+      - "console/"
+      - "console_libraries/"
+
   - name: Monitoring | prometheus | Copy options file
     template:
-      src: prometheus
+      src: prometheus.j2
       dest: /etc/sysconfig/prometheus
 
   - name: Monitoring | prometheus | Copy systemd service
     template:
-      src: prometheus.service
+      src: prometheus.service.j2
       dest: /etc/systemd/system/prometheus.service
 
   - name: Monitoring | prometheus | Daemon reload
