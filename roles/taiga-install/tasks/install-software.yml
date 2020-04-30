@@ -31,6 +31,9 @@
     package:
       name: "{{ taiga_packages }}"
       state: present
+    register: package_results
+    retries: 3
+    until: package_results is success
 
   - name: Taiga install | install-software | Install Node.js Yum Repository
     shell: curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
