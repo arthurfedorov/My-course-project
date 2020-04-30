@@ -19,4 +19,25 @@
       name: https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.3/rabbitmq-server-3.8.3-1.el8.noarch.rpm
       state: present
     notify: restart_rabbitmq
+
+  - name: Rabbitmq | main | Enables the rabbitmq_management plugin
+    rabbitmq_plugin:
+      names: rabbitmq_management
+      state: enabled
+
+  - name: Rabbitmq | main | Add taiga vhost
+    rabbitmq_vhost:
+      name: /taiga
+      state: present
+
+  - name: Rabbitmq | main | Add taiga user
+    rabbitmq_user:
+      user: taiga
+      password: PASSWORD_FOR_EVENTS
+      vhost: /taiga
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      state: present
+  
 ...

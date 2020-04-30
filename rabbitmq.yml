@@ -1,6 +1,7 @@
 ---
   - name: Install Rabbitmq
     hosts: rabbitmq
+    become_user: root
     become: True
     gather_facts: True
 
