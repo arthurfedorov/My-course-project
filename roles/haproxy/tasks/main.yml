@@ -1,14 +1,20 @@
 ---
-  - name: Taiga install | os-configuration | Disable SELinux
-    selinux:
-      state: disabled
-      
-  - name: Install HAproxy
+  - name: HAProxy | Install HAproxy
     package:
       name: haproxy
       state: present
 
-  - name: Copy haproxy.cfg for Patronig for balancing patroni
+  - name: HAProxy | Add haproxy ports to firewalld
+    firewalld:
+      port: "{{ item }}"
+      zone: public
+      permanent: Yes
+      state: enabled
+    with_items:
+      - 80/tcp
+      - 7000/tcp
+
+  - name: HAProxy | Copy haproxy.cfg for Patronig for balancing patroni
     copy:
       src: haproxy.cfg
       dest: /etc/haproxy/haproxy.cfg
@@ -16,21 +22,21 @@
     notify: enable_haproxy
     when: inventory_hostname == 'haproxy1'
   
-  - name: Install Keepalived
+  - name: HAProxy | Install Keepalived
     package:
       name: keepalived
       state: present
     when: 
       - inventory_hostname == 'haproxy2'
     
-  - name: Install Keepalived
+  - name: HAProxy | Install Keepalived
     package:
       name: keepalived
       state: present
     when: 
       - inventory_hostname == 'haproxy3'
 
-  - name: Copy keepalived configs to master balancer
+  - name: HAProxy | Copy keepalived configs to master balancer
     template:
       src: master_keepalived.conf.j2
       dest: /etc/keepalived/keepalived.conf
@@ -39,7 +45,7 @@
     when: 
       - inventory_hostname == 'haproxy2'
 
-  - name: Copy keepalived configs to slave balancer
+  - name: HAProxy | Copy keepalived configs to slave balancer
     template:
       src: slave_keepalived.conf.j2
       dest: /etc/keepalived/keepalived.conf
@@ -48,7 +54,7 @@
     when: 
       - inventory_hostname == 'haproxy3'
     
-  - name: Copy haproxy configs for load balancing
+  - name: HAProxy | Copy haproxy configs for load balancing
     template:
       src: haproxy.cfg.j2
       dest: /etc/haproxy/haproxy.cfg
@@ -57,7 +63,7 @@
     when: 
       - inventory_hostname == 'haproxy2'
 
-  - name: Copy haproxy configs for load balancing
+  - name: HAProxy | Copy haproxy configs for load balancing
     template:
       src: haproxy.cfg.j2
       dest: /etc/haproxy/haproxy.cfg

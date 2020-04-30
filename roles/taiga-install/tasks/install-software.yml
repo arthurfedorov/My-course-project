@@ -1,19 +1,9 @@
 ---
-  - name: Taiga install | install-software | Upgrade all packages
-    dnf:
-      name: "*"
-      state: latest
-  
   - name: Taiga install | install-software | Install the 'Development tools' package group
     dnf:
       name: '@Development tools'
       state: present
   
-  - name: Taiga install | install-software | Install epel-release
-    package:
-      name: epel-release
-      state: present
-
   - name: Install PostgreSQL Repository
     dnf:
       name:  https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm

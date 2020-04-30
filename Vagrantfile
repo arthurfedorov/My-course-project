@@ -1,115 +1,171 @@
-# -*- mode: ruby -*-
-# vim: set ft=ruby :
-
-MACHINES = {
-  :web1 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.100'
-  },
-
-  :web2 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.101'
-  },
-
-  :web3 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.102'
-  },
-
-  :pg1 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.110'
-  },
-   
-  :pg2 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.111'
-  },
-
-  :pg3 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.112'
-  },
-
-  :haproxy1 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.120'
-  },
-
-  :haproxy2 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.121'
-  },
-
-  :haproxy3 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.122'
-  },
-
-  :rabbitmq1 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.130'
-  },
-
-  :rabbitmq2 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.131'
-  },
-
-  :rabbitmq3 => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.132'
-  },
-
-  :consul => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.150'
-  },
-
-  :redis => {
-        :box_name => "centos/8",
-        :ip_addr => '192.168.10.140'
-  }
-
-}
-
 Vagrant.configure("2") do |config|
 
-  MACHINES.each do |boxname, boxconfig|
+  config.vm.define "web1" do |box|
+    box.vm.box = "centos/8"
+    box.vm.hostname = "web1.homelab.loc"
+    
+    box.vm.network :private_network, ip: "192.168.10.100"
 
-      config.vm.define boxname do |box|
+    box.vm.box_check_update = false
 
-          box.vm.box = boxconfig[:box_name]
-          box.vm.host_name = boxname.to_s
+    box.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
+    end
+  end
 
-          box.vm.network "private_network", ip: boxconfig[:ip_addr]
+  config.vm.define "web2" do |box|
+    box.vm.box = "centos/8"
+    box.vm.hostname = "web2.homelab.loc"
+    
+    box.vm.network :private_network, ip: "192.168.10.101"
 
-          box.vm.provider :virtualbox do |vb|
-          
-          case boxname.to_s
-          when "web1"
-            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
-          when "web2"
-            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
-          when "web3"
-            vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
-          when "pg1"
-            vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
-          when "pg2"
-            vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
-          when "pg3"
-            vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
-          when "haproxy1"
-            vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
-          when "haproxy2"
-            vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
-         when "haproxy3"
-            vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
-          end
+    box.vm.box_check_update = false
 
-          end
+    box.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
+    end
+  end
 
+  config.vm.define "web3" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "web3.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.102"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
+      end
+  end
+
+  config.vm.define "pg1" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "pg1.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.110"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
+      end
+  end
+
+  config.vm.define "pg2" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "pg2.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.111"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
+      end
+  end
+
+  config.vm.define "pg3" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "pg3.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.112"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
+      end
+  end
+
+  config.vm.define "haproxy1" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "haproxy1.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.120"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+      end
+  end
+
+  config.vm.define "haproxy2" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "haproxy2.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.121"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+      end
+  end
+
+  config.vm.define "haproxy3" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "haproxy3.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.122"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+      end
+  end
+
+  config.vm.define "rabbitmq1" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "rabbitmq1.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.130"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+      end
+  end
+
+  config.vm.define "rabbitmq2" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "rabbitmq2.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.131"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+      end
+  end
+
+  config.vm.define "rabbitmq3" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "rabbitmq3.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.132"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
+      end
+  end
+
+  config.vm.define "consul" do |box|
+      box.vm.box = "centos/8"
+      box.vm.hostname = "consul.homelab.loc"
+      
+      box.vm.network :private_network, ip: "192.168.10.140"
+  
+      box.vm.box_check_update = false
+  
+      box.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "4"]
       end
   end
 end

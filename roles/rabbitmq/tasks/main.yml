@@ -1,4 +1,14 @@
 ---
+  - name: Rabbimq | main | Add rabbitmq ports to firewalld
+    firewalld:
+      port: "{{ item }}"
+      zone: public
+      permanent: Yes
+      state: enabled
+    with_items:
+      - 5672/tcp
+      - 15672/tcp
+      
   - name: Rabbitmq | main | Install epel-release
     package:
       name: epel-release

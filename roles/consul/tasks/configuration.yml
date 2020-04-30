@@ -1,10 +1,10 @@
 ---
-- name: Consul | Configure systemd service file for Consul 
+- name: Consul | configuration | Configure systemd service file for Consul 
   template:                    
     src: consul.service.j2     
     dest: /etc/systemd/system/consul.service
 
-- name: Consul | Configure Consul
+- name: Consul | configuration | Configure Consul
   template:                    
     src: consul.json.j2        
     dest: /etc/consul.d/consul.json 
@@ -12,4 +12,14 @@
     group: consul              
   notify:
     - start consul 
+
+- name: Consul | configuration | Add consul ports to firewalld
+  firewalld:
+      port: "{{ item }}"
+      zone: public
+      permanent: Yes
+      state: enabled
+  with_items:
+      - 8500/tcp
+
 ...

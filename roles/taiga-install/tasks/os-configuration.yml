@@ -1,15 +1,5 @@
 ---
-  - name: Taiga install | os-configuration | Disable SELinux
-    selinux:
-      state: disabled
-
-  - name: Taiga install | os-configuration | Enable firewalld
-    service:
-      name: firewalld
-      enabled: Yes
-      state: restarted
-
-  - name: Taiga install | os-configuration | Add ports to firewalld
+  - name: Taiga install | os-configuration | Add taiga ports to firewalld
     firewalld:
       port: "{{ item }}"
       zone: public
@@ -17,14 +7,6 @@
       state: enabled
     with_items:
       - 80/tcp
-      - 5672/tcp
-      - 15672/tcp
-      - 6379/tcp
-
-  - name: Taiga install | os-configuration | Reload service firewalld
-    systemd:
-      name: firewalld
-      state: reloaded
 
   - name: Taiga install | os-configuration | Add group taiga
     group:

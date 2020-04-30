@@ -1,0 +1,25 @@
+---
+  - name: Common | main | Disable SELinux
+    selinux:
+      state: disabled
+      
+  - name: Common | main | Enable firewalld
+    service:
+      name: firewalld
+      enabled: Yes
+      state: restarted
+    
+  - name: Common | main | Install epel-release
+    package:
+      name: epel-release
+      state: present
+
+  - name: Common | main | Copy hosts
+    template:
+      src: hosts.j2
+      dest: /etc/hosts
+      force: Yes
+      owner: root
+      group: root
+      mode: '0644'
+...
