@@ -8,6 +8,7 @@
     unarchive:
       src: /tmp/node_exporter-0.18.1.linux-amd64.tar.gz
       dest: /usr/local/bin
+      remote_src: Yes
       extra_opts: [--strip-components=1]
     
   - name: Monitoring | nodexporter | Copy config file
