@@ -1,8 +1,13 @@
 ---
+  - name: Common | main | Disable SELinux
+    selinux:
+      state: disabled
+
   - name: Monitoring | prometheus | Add prometheus user
     user: 
       name: prometheus
       shell: /bin/false
+      create_home: No
 
   - name: Monitoring | prometheus | Ensure group "prometheus" exists
     group:
@@ -24,12 +29,16 @@
       src: /tmp/prometheus-2.17.2.linux-amd64/promtool
       dest: /usr/local/bin
       remote_src: Yes
+      owner: prometheus
+      group: prometheus
 
   - name: Monitoring | prometheus | Copy prometheus binary to destination folder
     copy:
       src: /tmp/prometheus-2.17.2.linux-amd64/prometheus
       dest: /usr/local/bin
       remote_src: Yes
+      owner: prometheus
+      group: prometheus
 
   - name: Monitoring | prometheus | Create folder for prometheus configs
     file:
@@ -42,6 +51,8 @@
     template:
       src: prometheus.yml.j2
       dest: /etc/prometheus/prometheus.yml
+      owner: prometheus
+      group: prometheus
 
   - name: Monitoring | prometheus | Create folder for prometheus DB
     file:
