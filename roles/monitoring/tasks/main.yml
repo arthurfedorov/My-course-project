@@ -1,0 +1,6 @@
+---
+  - name: Monitoring | Install node_exporter
+
+    include: node_exporter.yml
+
+...

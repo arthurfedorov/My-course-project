@@ -1,4 +1,9 @@
 ---
+  - name: Common | main | Update all packages
+    dnf:
+      name: '*' 
+      state: latest
+
   - name: Common | main | Disable SELinux
     selinux:
       state: disabled
