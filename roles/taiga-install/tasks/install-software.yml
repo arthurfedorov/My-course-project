@@ -11,6 +11,9 @@
 
   - name: Disable the built-in PostgreSQL module
     command: dnf -qy module disable postgresql
+    register: command_results
+    retries: 3
+    until: command_results is success
 
   - name: Install psql
     package:
