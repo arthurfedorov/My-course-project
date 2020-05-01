@@ -4,7 +4,7 @@
       name: haproxy
       state: present
 
-  - name: HAProxy | Add haproxy ports to firewalld
+  - name: HAProxy | Add haprports to firewalld
     firewalld:
       port: "{{ item }}"
       zone: public
@@ -13,6 +13,18 @@
     with_items:
       - 80/tcp
       - 7000/tcp
+
+  - name: HAProxy | Add haprports to firewalld
+    firewalld:
+      rich_rule: rule protocol value="vrrp" accept
+      zone: public
+      permanent: Yes
+      state: enabled
+
+  - name: HAProxy | Reload service firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
 
   - name: HAProxy | Copy haproxy.cfg for Patronig for balancing patroni
     copy:

@@ -12,7 +12,7 @@
     service:
       name: firewalld
       enabled: Yes
-      state: restarted
+      state: started
     
   - name: Common | main | Install epel-release
     package:

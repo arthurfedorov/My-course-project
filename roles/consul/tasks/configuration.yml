@@ -22,4 +22,8 @@
   with_items:
       - 8500/tcp
 
+- name: Consul | configuration | Reload service firewalld
+  systemd:
+      name: firewalld
+      state: reloaded
 ...

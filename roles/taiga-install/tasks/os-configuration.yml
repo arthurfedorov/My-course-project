@@ -8,6 +8,11 @@
     with_items:
       - 80/tcp
 
+  - name: Taiga install | os-configuration | Reload service firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
+
   - name: Taiga install | os-configuration | Add group taiga
     group:
       name: taiga

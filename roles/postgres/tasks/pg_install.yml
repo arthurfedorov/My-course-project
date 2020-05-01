@@ -22,4 +22,8 @@
       - 5432/tcp
       - 8008/tcp
       
+  - name: Consul | configuration | Reload service firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
 ...
