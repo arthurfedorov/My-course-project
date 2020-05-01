@@ -1,8 +1,15 @@
 ---
   - name: Monitoring | Install node_exporter
+    hosts: all
     include: node_exporter.yml
 
   - name: Monitoring | Install prometheus
+    hosts: prometheus
     include: prom.yml
+
+  - name: Monitoring | Install grafana
+    hosts: grafana
+
+    include: grafana.yml
 
 ...

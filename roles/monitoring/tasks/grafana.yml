@@ -1,0 +1,20 @@
+---
+  - name: Monitoring | grafana | Add grafana repo
+    template:
+      src: grafana.repo.j2
+      dest: /etc/yum.repos.d/grafana.repo
+      owner: root
+      group: root
+
+  - name: Monitoring | grafana | Install grafana
+    package:
+      name: grafana
+      state: present
+  
+  - name: Monitoring | nodexporter | Start grafana
+    systemd: 
+      name: grafana
+      state: restarted
+      daemon_reload: Yes
+      enabled: Yes  
+...

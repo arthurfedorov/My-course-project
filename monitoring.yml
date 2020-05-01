@@ -1,10 +1,7 @@
 ---
   - name: Install tools for monitoring
-    hosts: all
-    gather_facts: True
     become_user: root
     become: True
-
     roles:
       - monitoring
 ...

@@ -1,13 +1,16 @@
 [Unit]
-Description=Prometheus Server
+Description=Prometheus
+Documentation=https://prometheus.io/docs/introduction/overview/
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Restart=always
 User=prometheus
 Group=prometheus
 EnvironmentFile=/etc/sysconfig/prometheus
-ExecStart=/usr/local/bin/prometheus $OPTIONS
 ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/local/bin/prometheus $OPTIONS
 TimeoutStopSec=20s
 SendSIGKILL=no
 
