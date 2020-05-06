@@ -169,9 +169,9 @@ Vagrant.configure("2") do |config|
       end
   end
 
-  # config.vm.define "prometheus" do |box|
+  # config.vm.define "elastic" do |box|
   #     box.vm.box = "centos/8"
-  #     box.vm.hostname = "prometheus.homelab.loc"
+  #     box.vm.hostname = "elastic.homelab.loc"
       
   #     box.vm.network :private_network, ip: "192.168.10.170"
   
@@ -182,9 +182,22 @@ Vagrant.configure("2") do |config|
   #     end
   # end
 
-  # config.vm.define "grafana" do |box|
+  # config.vm.define "logstash" do |box|
   #     box.vm.box = "centos/8"
-  #     box.vm.hostname = "grafana.homelab.loc"
+  #     box.vm.hostname = "logstash.homelab.loc"
+      
+  #     box.vm.network :private_network, ip: "192.168.10.171"
+  
+  #     box.vm.box_check_update = false
+  
+  #     box.vm.provider :virtualbox do |vb|
+  #       vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
+  #     end
+  # end
+
+    # config.vm.define "kibana" do |box|
+  #     box.vm.box = "centos/8"
+  #     box.vm.hostname = "kibana.homelab.loc"
       
   #     box.vm.network :private_network, ip: "192.168.10.171"
   

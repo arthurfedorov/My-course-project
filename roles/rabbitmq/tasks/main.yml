@@ -8,17 +8,12 @@
     with_items:
       - 5672/tcp
       - 15672/tcp
-      
-  - name: Rabbitmq | main | Install epel-release
-    package:
-      name: epel-release
-      state: present
-    
+   
   - name: Rabbitmq | main | Install rabbitmq-server
     dnf:
       name: https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.3/rabbitmq-server-3.8.3-1.el8.noarch.rpm
       state: present
-    notify: restart_rabbitmq
+    notify: start_rabbitmq
 
   - name: Rabbitmq | main | Enables the rabbitmq_management plugin
     rabbitmq_plugin:
