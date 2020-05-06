@@ -9,12 +9,6 @@
       name:  https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
       state: present
 
-  # - name: Disable the built-in PostgreSQL module
-  #   command: dnf -qy module disable postgresql
-  #   register: command_results
-  #   retries: 3
-  #   until: command_results is success
-
   - name: Install psql
     package:
       name: postgresql11

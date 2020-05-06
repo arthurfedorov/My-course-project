@@ -169,30 +169,30 @@ Vagrant.configure("2") do |config|
       end
   end
 
-  config.vm.define "prometheus" do |box|
-      box.vm.box = "centos/8"
-      box.vm.hostname = "prometheus.homelab.loc"
+  # config.vm.define "prometheus" do |box|
+  #     box.vm.box = "centos/8"
+  #     box.vm.hostname = "prometheus.homelab.loc"
       
-      box.vm.network :private_network, ip: "192.168.10.170"
+  #     box.vm.network :private_network, ip: "192.168.10.170"
   
-      box.vm.box_check_update = false
+  #     box.vm.box_check_update = false
   
-      box.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
-      end
-  end
+  #     box.vm.provider :virtualbox do |vb|
+  #       vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
+  #     end
+  # end
 
-  config.vm.define "grafana" do |box|
-      box.vm.box = "centos/8"
-      box.vm.hostname = "grafana.homelab.loc"
+  # config.vm.define "grafana" do |box|
+  #     box.vm.box = "centos/8"
+  #     box.vm.hostname = "grafana.homelab.loc"
       
-      box.vm.network :private_network, ip: "192.168.10.171"
+  #     box.vm.network :private_network, ip: "192.168.10.171"
   
-      box.vm.box_check_update = false
+  #     box.vm.box_check_update = false
   
-      box.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
-      end
-  end
+  #     box.vm.provider :virtualbox do |vb|
+  #       vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
+  #     end
+  # end
 
 end

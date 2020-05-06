@@ -21,14 +21,14 @@ rabbitmq3 ansible_port=2210 ansible_private_key_file=.vagrant/machines/rabbitmq3
 [dcs]
 consul ansible_port=2211 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
 
-[monitoring]
-prometheus ansible_port=2212 ansible_private_key_file=.vagrant/machines/prometheus/virtualbox/private_key
-grafana ansible_port=2213 ansible_private_key_file=.vagrant/machines/grafana/virtualbox/private_key
+#[monitoring]
+#prometheus ansible_port=2212 ansible_private_key_file=.vagrant/machines/prometheus/virtualbox/private_key
+#grafana ansible_port=2213 ansible_private_key_file=.vagrant/machines/grafana/virtualbox/private_key
 
-[elk]
-elasticsearch ansible_port=2214 ansible_private_key_file=.vagrant/machines/prometheus/virtualbox/private_key
-logstash ansible_port=2215 ansible_private_key_file=.vagrant/machines/logstash/virtualbox/private_key
-kibana ansible_port=2216 ansible_private_key_file=.vagrant/machines/kibana/virtualbox/private_key
+#[elk]
+#elasticsearch ansible_port=2214 ansible_private_key_file=.vagrant/machines/prometheus/virtualbox/private_key
+#logstash ansible_port=2215 ansible_private_key_file=.vagrant/machines/logstash/virtualbox/private_key
+#kibana ansible_port=2216 ansible_private_key_file=.vagrant/machines/kibana/virtualbox/private_key
 
 [all:vars]
 ansible_host=127.0.0.1
