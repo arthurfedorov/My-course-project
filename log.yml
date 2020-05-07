@@ -4,12 +4,12 @@
   #   become_user: root
   #   become: True
   #   roles:
-  #     - elk
+  #     - elastic
 
   - name: Install kibana
     hosts: kibana
     become_user: root
     become: True
     roles:
-      - elk
+      - kibana
 ...
