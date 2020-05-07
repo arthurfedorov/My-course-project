@@ -1,5 +1,5 @@
 ---
-  - name: Taiga install | install-taiga | Copy nginx config file
+  - name: Taiga install | nginx | Copy nginx config file
     template:
       src: nginx.conf.j2
       dest: /etc/nginx/nginx.conf
@@ -7,7 +7,7 @@
       group: root
       mode: '0644'
 
-  - name: Taiga install | install-taiga | Copy nginx config file
+  - name: Taiga install | nginx | Copy nginx config file
     template:
       src: taiga.conf.j2
       dest: /etc/nginx/conf.d/taiga.conf
@@ -15,4 +15,11 @@
       group: root
       mode: '0644'
 
+  - name: Taiga install | nginx | Change directory owner
+    file:
+      path: /var/lib/nginx
+      state: directory
+      recurse: Yes
+      owner: taiga
+      group: taiga
 ...
