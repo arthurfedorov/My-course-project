@@ -1,0 +1,33 @@
+---
+  - name: ELK | elastic | Enable ports
+    firewalld:
+      port: "{{ item }}"
+      zone: public
+      permanent: Yes
+      state: enabled
+    with_items:
+      - 92/tcp
+
+  - name: ELK | elastic | Reload service firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
+
+  - name: ELK | elastic | Copy elastic repository
+    copy:
+      src: elasticsearch.repo
+      dest: /etc/yum.repos.d/
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: ELK | elastic | Install elasticsearch
+    package:
+      name: elasticsearch
+      state: latest
+
+  # - name: ELK | elastic | Copy elastic repository
+  #   template:
+  #     src: elasticsearch.yml.j2
+  #     dest: /etc/elasticsearch/elasticsearch.yml
+...

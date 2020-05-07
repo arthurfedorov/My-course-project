@@ -1,21 +1,27 @@
 ---
-  - name: Taiga install | install-taiga | Daemon reload
+  - name: Taiga install | services | Daemon reload
     systemd:
       daemon-reload: yes
 
-  - name: Taiga install | install-taiga | Start nginx
+  - name: Taiga install | services | Start nginx
     service:
       name: nginx
       state: started
       enabled: yes
 
-  - name: Taiga install | install-taiga | Start taiga.service
+  - name: Taiga install | services | Start redis
+    service:
+      name: redis
+      state: started
+      enabled: yes
+
+  - name: Taiga install | services | Start taiga.service
     service:
       name: taiga
       state: started
       enabled: yes
     
-  - name: Taiga install | install-taiga | Start taiga_events.service
+  - name: Taiga install | services | Start taiga_events.service
     service:
       name: taiga_events
       state: started

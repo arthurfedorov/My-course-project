@@ -1,7 +1,0 @@
----
-  - name: Install tools for monitoring
-    become_user: root
-    become: True
-    roles:
-      - monitoring
-...

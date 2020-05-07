@@ -1,6 +1,7 @@
 ---
 taiga_packages:
   - nginx
+  - redis
   - libjpeg-devel
   - zlib-devel 
   - git 
