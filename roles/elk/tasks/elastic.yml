@@ -1,36 +1,45 @@
 ---
-  - name: ELK | elastic | Enable ports
-    firewalld:
-      port: "{{ item }}"
-      zone: public
-      permanent: Yes
-      state: enabled
-    with_items:
-      - 92/tcp
+  # - name: ELK | elastic | Enable ports
+  #   firewalld:
+  #     port: "{{ item }}"
+  #     zone: public
+  #     permanent: Yes
+  #     state: enabled
+  #   with_items:
+  #     - 92/tcp
 
-  - name: ELK | elastic | Reload service firewalld
-    systemd:
-      name: firewalld
-      state: reloaded
-
-  - name: ELK | elastic | Copy elastic repository
-    copy:
-      src: elasticsearch.repo
-      dest: /etc/yum.repos.d/
-      owner: root
-      group: root
-      mode: '0644'
-
-  - name: ELK | elastic | Install elasticsearch
-    package:
-      name: "{{ item }}"
-      state: latest
-    with_items:
-      - java-1.8.0-openjdk-devel
-      - elasticsearch
+  # - name: ELK | elastic | Reload service firewalld
+  #   systemd:
+  #     name: firewalld
+  #     state: reloaded
 
   # - name: ELK | elastic | Copy elastic repository
-  #   template:
-  #     src: elasticsearch.yml.j2
-  #     dest: /etc/elasticsearch/elasticsearch.yml
+  #   copy:
+  #     src: elasticsearch.repo
+  #     dest: /etc/yum.repos.d/
+  #     owner: root
+  #     group: root
+  #     mode: '0644'
+
+  # - name: ELK | elastic | Install elasticsearch
+  #   package:
+  #     name: "{{ item }}"
+  #     state: latest
+  #   with_items:
+  #     - java-1.8.0-openjdk-devel
+  #     - elasticsearch
+
+  - name: ELK | elastic | Copy elastic repository
+    template:
+      src: elasticsearch.yml.j2
+      dest: /etc/elasticsearch/elasticsearch.yml
+      owner: root
+      group: elasticsearch
+      mode: '0660'
+
+  - name: ELK | elastic | Start elasticsearch service
+    service:
+      name: elasticsearch
+      state: started
+      enabled: Yes
 ...
