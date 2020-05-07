@@ -22,9 +22,7 @@ rabbitmq3 ansible_port=2210 ansible_private_key_file=.vagrant/machines/rabbitmq3
 consul ansible_port=2211 ansible_private_key_file=.vagrant/machines/consul/virtualbox/private_key
 
 [elk]
-elastic ansible_port=2212 ansible_private_key_file=.vagrant/machines/elastic/virtualbox/private_key
-logstash ansible_port=2213 ansible_private_key_file=.vagrant/machines/logstash/virtualbox/private_key
-kibana ansible_port=2214 ansible_private_key_file=.vagrant/machines/kibana/virtualbox/private_key
+elk ansible_port=2212 ansible_private_key_file=.vagrant/machines/elk/virtualbox/private_key
 
 [all:vars]
 ansible_host=127.0.0.1

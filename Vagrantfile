@@ -169,42 +169,16 @@ Vagrant.configure("2") do |config|
       end
   end
 
-  config.vm.define "elastic" do |box|
+  config.vm.define "elk" do |box|
       box.vm.box = "centos/8"
-      box.vm.hostname = "elastic.homelab.loc"
+      box.vm.hostname = "elk.homelab.loc"
       
       box.vm.network :private_network, ip: "192.168.10.150"
   
       box.vm.box_check_update = false
   
       box.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", "4096","--cpus", "4"]
-      end
-  end
-
-  config.vm.define "logstash" do |box|
-      box.vm.box = "centos/8"
-      box.vm.hostname = "logstash.homelab.loc"
-      
-      box.vm.network :private_network, ip: "192.168.10.151"
-  
-      box.vm.box_check_update = false
-  
-      box.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
-      end
-  end
-
-    config.vm.define "kibana" do |box|
-      box.vm.box = "centos/8"
-      box.vm.hostname = "kibana.homelab.loc"
-      
-      box.vm.network :private_network, ip: "192.168.10.152"
-  
-      box.vm.box_check_update = false
-  
-      box.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", "2048","--cpus", "2"]
+        vb.customize ["modifyvm", :id, "--memory", "8096","--cpus", "6"]
       end
   end
 

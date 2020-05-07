@@ -1,13 +1,13 @@
 ---
-  # - name: Install elastic
-  #   hosts: elastic
-  #   become_user: root
-  #   become: True
-  #   roles:
-  #     - elastic
+  - name: Install elastic
+    hosts: elk
+    become_user: root
+    become: True
+    roles:
+      - elastic
 
   - name: Install kibana
-    hosts: kibana
+    hosts: elk
     become_user: root
     become: True
     roles:

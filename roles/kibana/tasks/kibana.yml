@@ -47,6 +47,4 @@
       name: kibana
       state: started
       enabled: Yes
-
-
 ...
