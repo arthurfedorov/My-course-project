@@ -1,0 +1,36 @@
+---
+  - name: ELK | kibana | Import kibana key
+    rpm_key:
+      state: present
+      key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+  - name: ELK | kibana | Enable ports
+    firewalld:
+      port: "{{ item }}"
+      zone: public
+      permanent: Yes
+      state: enabled
+    with_items:
+      - 5601/tcp
+
+  - name: ELK | kibana | Reload service firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
+
+  - name: ELK | kibana | Copy kibana repository
+    copy:
+      src: kibana.repo
+      dest: /etc/yum.repos.d/
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: ELK | kibana | Install kibana
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - java-1.8.0-openjdk-devel
+      - kibana
+...

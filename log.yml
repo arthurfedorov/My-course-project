@@ -1,6 +1,13 @@
 ---
-  - name: Install logging
-    hosts: elastic
+  # - name: Install elastic
+  #   hosts: elastic
+  #   become_user: root
+  #   become: True
+  #   roles:
+  #     - elk
+
+  - name: Install kibana
+    hosts: kibana
     become_user: root
     become: True
     roles:
