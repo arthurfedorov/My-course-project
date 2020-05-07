@@ -30,7 +30,7 @@
       - java-1.8.0-openjdk-devel
       - elasticsearch
 
-  - name: ELK | elastic | Copy elastic repository
+  - name: ELK | elastic | Copy elastic config
     template:
       src: elasticsearch.yml.j2
       dest: /etc/elasticsearch/elasticsearch.yml
