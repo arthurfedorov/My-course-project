@@ -1,5 +1,7 @@
 ---
-  - name: Install logging 
+  - name: Install logging
+    become_user: root
+    become: True
     roles:
       - elk
 ...
