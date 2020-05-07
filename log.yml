@@ -1,5 +1,6 @@
 ---
   - name: Install logging
+    hosts: elastic
     become_user: root
     become: True
     roles:

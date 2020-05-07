@@ -1,15 +1,5 @@
 ---
-  - name: ELK | main | Install required packages
-    hosts: elk
-    become_user: root
-    become: True
-    include: configuration.yml
-
-
   - name: ELK | main | Install & configure elastic
-    hosts: elastic
-    become_user: root
-    become: True
     include: elastic.yml
 ...
 

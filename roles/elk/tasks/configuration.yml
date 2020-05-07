@@ -1,8 +1,0 @@
----
-  - name: ELK | configuration | Install Java 8
-    package:
-      name: java-1.8.0-openjdk-devel
-      state: present
-...
-
-  
