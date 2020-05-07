@@ -8,7 +8,6 @@
   - name: ELK | main | Install & configure logstash
     include: logstash.yml
 
-
 ...
 
   

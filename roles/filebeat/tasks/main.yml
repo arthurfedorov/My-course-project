@@ -1,0 +1,15 @@
+---
+  - name: ELK | filebeat | Install filebeat
+    shell: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.5.1-x86_64.rpm && rpm -vi filebeat-7.5.1-x86_64.rpm
+
+  - name: ELK | filebeat | Copy filebeat configs
+    copy:
+      src: filebeat.yml
+      dest: /etc/filebeat/filebeat.yml
+  
+  - name: ELK | filebeat | Start filebeat service
+    service:
+      name: filebeat
+      state: started
+      enabled: Yes
+...

@@ -6,10 +6,10 @@
     roles:
       - elastic
 
-  - name: Install kibana
-    hosts: elk
+  - name: Install filebeat
+    hosts: web
     become_user: root
     become: True
     roles:
-      - kibana
+      - filebeat
 ...
