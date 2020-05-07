@@ -1,9 +1,4 @@
 ---
-  - name: Kibana | Import kibana key
-    rpm_key:
-      state: present
-      key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
   - name: Kibana | Enable ports
     firewalld:
       port: "{{ item }}"
@@ -31,7 +26,6 @@
       name: "{{ item }}"
       state: latest
     with_items:
-      - java-1.8.0-openjdk-devel
       - kibana
 
   - name: Kibana | Copy kibana config

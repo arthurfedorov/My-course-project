@@ -1,0 +1,36 @@
+---
+  - name: ELK | logstash | Enable ports
+    firewalld:
+      port: "{{ item }}"
+      zone: public
+      permanent: Yes
+      state: enabled
+    with_items:
+      - 5044/tcp
+
+  - name: ELK | logstash | Reload service firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
+      
+  - name: ELK | logstash | Install logstash
+    package:
+      name: logstash
+      state: latest
+
+  - name: ELK | logstash | Copy logstash configs
+    copy:
+      src: "{{ item }}"
+      dest: /etc/yum.repos.d/
+      owner: root
+      group: root
+      mode: '0644'
+    with_fileglob:
+      - conf.d/*
+
+  - name: ELK | logstash | Start logstash service
+    service:
+      name: logstash
+      state: started
+      enabled: Yes
+...

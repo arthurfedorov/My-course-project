@@ -1,6 +1,0 @@
----
-  - name: ELK | main | Install & configure kibana
-    include: kibana.yml
-...
-
-  

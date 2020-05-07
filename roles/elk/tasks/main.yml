@@ -1,0 +1,14 @@
+---
+  - name: ELK | main | Install & configure elastic
+    include: elastic.yml
+
+  - name: ELK | main | Install & configure kibana
+    include: kibana.yml
+
+  - name: ELK | main | Install & configure logstash
+    include: logstash.yml
+
+
+...
+
+  
