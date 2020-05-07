@@ -14,11 +14,6 @@
       name: firewalld
       state: reloaded
 
-  - name: ELK | elastic | Import key
-    rpm_key:
-      state: present
-      key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
   - name: ELK | elastic | Copy elastic repository
     copy:
       src: elasticsearch.repo
