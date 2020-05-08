@@ -4,6 +4,10 @@
       name: '*' 
       state: latest
 
+  - name: Set timezone to Europe/Moscow
+    timezone:
+      name: Europe/Moscow
+
   - name: Common | main | Disable SELinux
     selinux:
       state: disabled
