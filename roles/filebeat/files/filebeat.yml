@@ -2,7 +2,7 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-      - /var/log/nginx/*-access.log
+      - /home/taiga/logs/*.access.log
   fields:
     type: nginx_access
   fields_under_root: true
@@ -11,7 +11,7 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-      - /var/log/nginx/*-error.log
+      - /home/taiga/logs/*.error.log
   fields:
     type: nginx_error
   fields_under_root: true

@@ -1,0 +1,67 @@
+---
+  - name: OS configuration
+    hosts: all
+    gather_facts: True
+    become_user: root
+    become: True
+    roles:
+      - common
+
+  - name: Consul install and configure role
+    hosts: dcs
+    gather_facts: True
+    become_user: root
+    become: True
+    roles:
+      - consul
+
+  - name: Install PostgreSQL
+    hosts: db
+    become: True
+    gather_facts: True
+    roles:
+      - postgres
+
+  - name: Patroni install and configure role
+    hosts: db
+    gather_facts: True
+    become_user: root
+    become: True
+    roles:
+      - patroni
+
+  - name: HAproxy install and configure role
+    hosts: proxy
+    gather_facts: True
+    become_user: root
+    become: True
+    roles:
+      - haproxy
+
+  - name: Install Rabbitmq
+    hosts: rabbitmq
+    become_user: root
+    become: True
+    gather_facts: True
+    roles:
+      - rabbitmq
+
+  - name: Install Taiga
+    hosts: web
+    roles: 
+      - taiga-install
+    
+  - name: Install elastic
+    hosts: elk
+    become_user: root
+    become: True
+    roles:
+      - elk
+
+  - name: Install filebeat
+    hosts: web
+    become_user: root
+    become: True
+    roles:
+      - filebeat
+...
