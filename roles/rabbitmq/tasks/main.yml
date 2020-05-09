@@ -10,6 +10,7 @@
       - 15672/tcp
       - 4369/tcp
       - 25672/tcp
+      - 80/tcp
 
   - name: Rabbimq | main | Reload service firewalld
     systemd:
@@ -46,5 +47,5 @@
       read_priv: .*
       write_priv: .*
       state: present
-  
+      tags: administrator 
 ...
