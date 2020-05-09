@@ -4,10 +4,10 @@
       name: epel-release
       state: present
 
-  - name: Common | main | Update all packages
-    dnf:
-      name: '*' 
-      state: latest
+  # - name: Common | main | Update all packages
+  #   dnf:
+  #     name: '*' 
+  #     state: latest
 
   - name: Set timezone to Europe/Moscow
     timezone:

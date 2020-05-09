@@ -130,32 +130,6 @@ Vagrant.configure("2") do |config|
       end
   end
 
-  config.vm.define "rabbitmq2" do |box|
-    box.vm.box = "centos/8"
-    box.vm.hostname = "rabbitmq2.homelab.loc"
-    
-    box.vm.network :private_network, ip: "192.168.10.130"
-
-    box.vm.box_check_update = false
-
-    box.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
-    end
-  end
-
-  config.vm.define "rabbitmq3" do |box|
-    box.vm.box = "centos/8"
-    box.vm.hostname = "rabbitmq3.homelab.loc"
-    
-    box.vm.network :private_network, ip: "192.168.10.130"
-
-    box.vm.box_check_update = false
-
-    box.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "1024","--cpus", "2"]
-    end
-  end
-
 config.vm.define "consul" do |box|
       box.vm.box = "centos/8"
       box.vm.hostname = "consul.homelab.loc"
