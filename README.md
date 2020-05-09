@@ -1,5 +1,17 @@
-# Taiga: Setup production environment
+# Проектная работа курса "Linux администратор"
 
-yum update -y
-dnf groupinstall "Development Tools"
-dnf install -y libjpeg-devel zlib-devel git gdbm-devel python3 python3-pip python3-devel libxml2-devel libxslt-devel openssl-devel libffi-devel
+## Архитектура системы
+
+Мной была выбрана [Taiga](https://taiga.io/) это бесплатная система управления проектами с открытым исходным кодом. Его интерфейс написан на AngularJS и CoffeeScript, бэкенд Django и Python. В качестве базы данных используется PostgreSQL.
+
+![image](screenshoots/1.png)
+
+Входной точкой для системы является кластер из HAProxy, на которых поднят плавающий IP keepalived. В случае падения интерфейса или ноды, IP адрес системы переплывет на другую ноду, с точки зрения пользователей ничего не изменится.
+
+Веб приложение поднято на трех нода, запросы на которых по round-robin роутятся с HAProxy keepalived. В случае выхода из строя одной из нод, HAProxy отбрасывает ее из балансировки и запросы ходят между оставшимися нодами.
+
+Запросы с бэкенда приложения роутятся на HAPrpoxy, который в свою очередь отправляет их на кластер Patroni на ноду, которая на текущий момент является мастер нодой.
+
+Логи собираются в ELK.
+
+RabbitMQ не является точкой отказой работы приложения, поэтому было принято решение не кластеризовывать его.
