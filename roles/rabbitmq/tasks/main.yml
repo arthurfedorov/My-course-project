@@ -37,6 +37,7 @@
     rabbitmq_vhost:
       name: /taiga
       state: present
+    when: inventory_hostname == 'rabbitmq1'
 
   - name: Rabbitmq | main | Add taiga user
     rabbitmq_user:
@@ -47,5 +48,6 @@
       read_priv: .*
       write_priv: .*
       state: present
-      tags: administrator 
+      tags: administrator
+    when: inventory_hostname == 'rabbitmq1'
 ...
