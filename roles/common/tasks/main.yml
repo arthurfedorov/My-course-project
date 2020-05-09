@@ -1,4 +1,9 @@
 ---
+  - name: Common | main | Install epel-release
+    package:
+      name: epel-release
+      state: present
+
   - name: Common | main | Update all packages
     dnf:
       name: '*' 
@@ -17,11 +22,6 @@
       name: firewalld
       enabled: Yes
       state: started
-    
-  - name: Common | main | Install epel-release
-    package:
-      name: epel-release
-      state: present
 
   - name: Common | main | Copy hosts
     template:
